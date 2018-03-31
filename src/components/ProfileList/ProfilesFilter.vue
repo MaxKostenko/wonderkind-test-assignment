@@ -14,9 +14,9 @@
     },
 
     render(createElement, context) {
-      const filteredList = context.props.profiles;
+      let filteredList = context.props.profiles;
       if (context.props.filter) {
-        filteredList.filter(
+        filteredList = filteredList.filter(
           profile => profile.fullName.toLowerCase().includes(context.props.filter.toLowerCase())
         );
       }

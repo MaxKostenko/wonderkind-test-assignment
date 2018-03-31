@@ -8,7 +8,7 @@
         v-for="contact in group.list"
         :to="{ name: 'details', params: { id: contact.id }}"
       >
-        <div>
+        <div :class="{current: contact.isActive}">
           <b>{{ contact.lastName }}</b>, {{ contact.firstName }}
         </div>
       </router-link>
@@ -48,3 +48,9 @@
     }
   }
 </script>
+
+<style scoped>
+  .current {
+    background-color: antiquewhite;
+  }
+</style>

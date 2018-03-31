@@ -4,6 +4,7 @@ import ContactList from '@/views/ContactList';
 import ContactListDetails from '@/views/ContactList/ContactListDetails';
 import ContactListEdit from '@/views/ContactList/ContactListEdit';
 import ContactAdd from '@/views/ContactAdd';
+import store from '@/store';
 
 Vue.use(Router);
 
@@ -12,23 +13,25 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'list',
+      redirect: (to) => {
+        return `/profile/${store.state.currentProfile}`;
+      }
+    },
+    {
+      path: '/profile/:id',
       component: ContactList,
       props: true,
       children: [
         {
-          path: '/contact/:id',
+          path: '/',
           name: 'details',
           component: ContactListDetails,
-          props: true,
         },
         {
-          path: '/contact/edit/:id',
+          path: '/edit',
           name: 'edit',
           component: ContactListEdit,
-          props: true,
         }
-
       ],
     },
     {

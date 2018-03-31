@@ -6,18 +6,20 @@ export default {
         id: key,
         firstName,
         lastName,
-        fullName: val.name
+        fullName: val.name,
+        isActive: key === state.currentProfile
       };
     });
   },
   currentProfile(state) {
     const profile = {
-      ...state.profiles[state.currentProfile]
+      ...state.profiles[state.currentProfile],
+      id: state.currentProfile,
     };
     const address = state.addresses[state.currentProfile];
     if(address) {
       profile['address'] = address;
     }
     return profile;
-  }
+  },
 }
